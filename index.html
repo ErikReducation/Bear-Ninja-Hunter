@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="A rock paper scissors type game">
+    <meta name="keywords" content="Bear Hunter Ninja">
+    <meta name="author" content="Erik Rosenbalm">
+    <title>Bear Hunter Ninja</title>
+  </head>
+  
+  <body>
+
+     <!--Here is where our html console lives-->
+    <p id="output"></p>
+
+    <!--Introduction-->
+    <script>
+        let nameTag = prompt('Welcome to Bear Hunter Ninja! Please enter your name to get started: ');
+        //ask user for name
+        let greeting = `Hi ${nameTag} Let\'s Play!`;
+        alert(`${greeting}`);
+        //say hello to user
+    </script>
+
+    <!--Game-->
+    <script>
+        let halChoice = 'bear'; 
+        //Randomization In Progress.
+        let userChoice = prompt('Who are you: Bear, Ninja, or Hunter?');
+        //user picks one of three roles
+        document.getElementById('output').innerHTML = `${nameTag}, You picked ${userChoice}! <br> The computer picked ${halChoice}!`;
+        //write outcome to html console
+        console.log(`${nameTag}, You picked ${userChoice}! \n The computer picked ${halChoice}!`);
+        //write outcome to javascript console
+    </script>
+ </body>
+</html>

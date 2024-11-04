@@ -22,17 +22,90 @@
         alert(`${greeting}`);
         //say hello to user
     </script>
+    <!-- TODO 
+    Handle ALL possible gameplay outcomes using the appropriate decision structure for partitioned values.  
+    (See the following chart.)
 
+    Each time the game is played, the user can play one of three (3) options, and the computer can play one of three (3) options.
+    3 * 3 = 9 total combinations.
+    The computer choice is still hard coded, however create code now to evaluate the computer's choice for when it can play any of the three (3) options.
+    -->
     <!--Game-->
     <script>
-        let halChoice = 'bear'; 
+      
         //Randomization In Progress.
-        let userChoice = prompt('Who are you: Bear, Ninja, or Hunter?');
+        let halChoice = 'bear'; 
         //user picks one of three roles
+        let userChoice = prompt('Who are you: Bear, Ninja, or Hunter?');
+        //write lineup to html console
         document.getElementById('output').innerHTML = `${nameTag}, You picked ${userChoice}! <br> The computer picked ${halChoice}!`;
-        //write outcome to html console
+        //write lineup to javascript console
         console.log(`${nameTag}, You picked ${userChoice}! \n The computer picked ${halChoice}!`);
-        //write outcome to javascript console
+       
+
+        //game logic..
+        let outcome = "";
+
+        //computer chooses bear
+        if (halChoice === 'Bear'){
+        switch (userChoice) {
+          case 'Bear':
+            outcome = 'tie';
+            break;
+          case 'Ninja':
+            outcome = 'lose';
+            break;
+          case 'Hunter':
+            outcome = 'win';
+            break;
+        }
+        }
+        //computer chooses ninja
+        if (halChoice === 'Ninja) {
+        switch (userChoice) {
+          case 'Bear':
+            outcome = 'win';
+            break;
+          case 'Ninja':
+            outcome = 'tie';
+            break;
+          case 'Hunter':
+            outcome = 'lose';
+            break;
+        }
+        }
+        //computer chooses hunter 
+        if (halChoice === 'Hunter') {
+        switch (userChoice) {
+          case 'Bear':
+            outcome = 'lose';
+            break;
+          case 'Ninja':
+            outcome = 'win';
+            break;
+          case 'Hunter':
+            outcome = 'tie';
+            break;
+        }
+        }
+        //write win/lose to html and console
+        //win
+        if (outcome === 'win') {
+          document.getElementById('output').innerHTML = "You Win!!";
+          console.log("You Win!!");
+        }
+        //lose
+        else if (outcome === 'lose') {
+          document.getElementById('output').innerHTML = "You Lose!!";
+          console.log("You Lose!!");
+        }
+        //tie
+        else {
+          document.getElementById('output').innerHTML = "It\'s a tie.";
+          console.log("It\'s a tie.");
+        }
+       
+      
     </script>
  </body>
 </html>

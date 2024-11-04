@@ -13,6 +13,7 @@
 
      <!--Here is where our html console lives-->
     <p id="output"></p>
+    <p id="output2"></p>
 
     <!--Introduction-->
     <script>
@@ -91,17 +92,17 @@
         //write win/lose to html and console
         //win
         if (outcome === 'win') {
-          document.getElementById('output').innerHTML = "You Win!!";
+          document.getElementById('output2').innerHTML = "You Win!!";
           console.log("You Win!!");
         }
         //lose
         else if (outcome === 'lose') {
-          document.getElementById('output').innerHTML = "You Lose!!";
+          document.getElementById('output2').innerHTML = "You Lose!!";
           console.log("You Lose!!");
         }
         //tie
         else {
-          document.getElementById('output').innerHTML = "It\'s a tie.";
+          document.getElementById('output2').innerHTML = "It\'s a tie.";
           console.log("It\'s a tie.");
         }
        

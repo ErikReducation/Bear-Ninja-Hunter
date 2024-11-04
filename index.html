@@ -35,7 +35,7 @@
     <script>
       
         //Randomization In Progress.
-        let halChoice = 'bear'; 
+        let halChoice = 'Bear'; 
         //user picks one of three roles
         let userChoice = prompt('Who are you: Bear, Ninja, or Hunter?');
         //write lineup to html console
@@ -45,50 +45,58 @@
        
 
         //game logic..
-        let outcome = '';
-
-        //computer chooses bear
-        if (halChoice === 'Bear'){
-        switch (userChoice) {
-          case 'Bear':
-            outcome = 'tie';
-            break;
-          case 'Ninja':
-            outcome = 'lose';
-            break;
-          case 'Hunter':
-            outcome = 'win';
-            break;
+        let lineup;
+        if (halChoice === 'Bear') {
+          if (userChoice === 'Bear') {
+            lineup = 1;
+          }
+          else if (userChoice === 'Ninja') {
+            lineup = 9;
+          } else { //hunter
+            lineup = 6
+          }
         }
-        }
-        //computer chooses ninja
-        if (halChoice === 'Ninja') {
-        switch (userChoice) {
-          case 'Bear':
-            outcome = 'win';
-            break;
-          case 'Ninja':
-            outcome = 'tie';
-            break;
-          case 'Hunter':
-            outcome = 'lose';
-            break;
-        }
-        }
-        //computer chooses hunter 
         if (halChoice === 'Hunter') {
-        switch (userChoice) {
-          case 'Bear':
-            outcome = 'lose';
-            break;
-          case 'Ninja':
-            outcome = 'win';
-            break;
-          case 'Hunter':
+           if (userChoice === 'Bear') {
+            lineup = 8;
+          }
+          else if (userChoice === 'Ninja') {
+            lineup = 5;
+          } else { //hunter
+            lineup = 3;
+          }
+        }
+        if (halChoice === 'Ninja') {
+           if (userChoice === 'Bear') {
+            lineup = 4;
+          }
+          else if (userChoice === 'Ninja') {
+            lineup = 2;
+          } else { //hunter
+            lineup = 7;
+          }
+        }
+        
+        //partitioned switch
+        let outcome = '';
+        switch (lineup) {
+          case 1:
+          case 2:
+          case 3:
             outcome = 'tie';
             break;
+          case 4:
+          case 5:
+          case 6:
+            outcome = 'win';
+            break;
+          case 7:
+          case 8:
+          case 9:
+            outcome = 'lose';
+            break;
         }
-        }
+      
         //write win/lose to html and console
         //win
         if (outcome === 'win') {

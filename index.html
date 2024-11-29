@@ -18,11 +18,8 @@
 
     <!--Introduction-->
     <script>
-        let nameTag = prompt('Welcome to Bear Hunter Ninja! Please enter your name to get started: ');
-        //ask user for name
-        let greeting = "Hi " + nameTag +  " Let\'s Play!";
-        alert(`${greeting}`);
-        //say hello to user
+        
+       
         const halStrat = ['bear', 'ninja', 'hunter'];
         let halChoice = 0; //default bear
         let userChoice = '';
@@ -30,6 +27,25 @@
         let winTotal = 0;
         let loseTotal = 0;
         let tieTotal = 0;
+        let currentDate = null;
+        let nameIsValid = false;
+        let nameTag = '';
+        
+        //ask user for name 
+        //say hello to user
+        
+        do {
+          nameTag = prompt('Welcome to Bear Ninja Hunter! Please enter your name to get started: ');
+          if ( name != null && name.trim().length!=0){//check input validity. Checks for null string (cancel), empty string (undefined), and whitespace string (.trim())
+            nameIsValid = true;
+          } else {
+            alert('Invalid input. Input must not be empty or whitespace. If you don\'t have a name, make one up now.');
+          }
+        } while (!nameIsValid)//do this loop until the user inputs a valid name
+      
+       
+        let greeting = "Hi " + nameTag +  " Let\'s Play!";
+        alert(`${greeting}`);
     </script>
     <!-- TODO 
     Handle invalid inputs such as empty response, any string that isn't Bear, Ninja, or Hunter, clicking Cancel, etc
@@ -49,9 +65,39 @@
         userChoice = prompt('Who are you: Bear, Ninja, or Hunter?').toLowerCase();
 
         //3 second countdown
+
+        //3-2-1-countdown to console and pid 
+	
+      	console.log(3); 
+        document.getElementById('output').innerHTML = '3 \n';//reset html output
+	      //wait 1 second
+	      date = Date.now();//code lifted from https://www.sitepoint.com/delay-sleep-pause-wait/
+	      currentdate = null;
+	      do {
+  		    currentDate = Date.now();
+	      } while (currentDate - date < 1000);// very dangerous. Can cause crashes
+	      
+        console.log(2); 
+        document.getElementById('output').innerHTML += '2 \n';//append 2
+	      //wait
+	      date = Date.now();//code lifted from https://www.sitepoint.com/delay-sleep-pause-wait/
+	      currentdate = null;
+	      do {
+		      currentDate = Date.now();
+	      } while (currentDate - date < 1000);// very dangerous. Can cause crashes
+     
+     	  console.log(1); 
+    	  document.getElementById('output').innerHTML += '1 \n';//append 1
+	      //wait
+	      date = Date.now();//code lifted from https://www.sitepoint.com/delay-sleep-pause-wait/
+	      currentdate = null;
+	      do {
+		      currentDate = Date.now();
+	      } while (currentDate - date < 1000);// very dangerous. Can cause crashes
+         
       
         //write lineup to html console
-        document.getElementById('output').innerHTML = `${nameTag} you picked ${userChoice}! <br><br> The computer picked ${halChoice}!`;
+        document.getElementById('output').innerHTML += `${nameTag} you picked ${userChoice}! <br><br> The computer picked ${halChoice}!`;
         //write lineup to javascript console
         console.log(`${nameTag} you picked ${userChoice}! \n The computer picked ${halChoice}!`);
        
@@ -112,19 +158,19 @@
         //write win/lose to html and console
         //win
         if (outcome === 'win') {
-          document.getElementById('output2').innerHTML = "You Win!!";
+          document.getElementById('output2').innerHTML += "You Win!!";
           console.log("You Win!!");
           winTotal++;
         }
         //lose
         else if (outcome === 'lose') {
-          document.getElementById('output2').innerHTML = "You Lose!!";
+          document.getElementById('output2').innerHTML += "You Lose!!";
           console.log("You Lose!!");
           loseTotal++;
         }
         //tie
         else {
-          document.getElementById('output2').innerHTML = "It\'s a tie.";
+          document.getElementById('output2').innerHTML += "It\'s a tie.";
           console.log("It\'s a tie.");
           tieTotal++;
         }

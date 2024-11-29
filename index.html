@@ -42,11 +42,14 @@
     -->
     <!--Game-->
     <script>
-      
-        //Randomization In Progress.
-        let halChoice = 'Bear'; 
+        function getRandomInt(max) 
+        {
+          return Math.floor(Math.random() * max);
+        }//initialize math.random seed
+        const halStrat = ['bear', 'ninja', 'hunter'];
+        let halChoice = halStrat[getRandomInt(3)]; // choose one of 3 from array at random
         //user picks one of three roles
-        let userChoice = prompt('Who are you: Bear, Ninja, or Hunter?');
+        let userChoice = prompt('Who are you: Bear, Ninja, or Hunter?').toLowerCase();
         //write lineup to html console
         document.getElementById('output').innerHTML = `${nameTag}, You picked ${userChoice}! <br><br> The computer picked ${halChoice}!`;
         //write lineup to javascript console
@@ -55,36 +58,36 @@
 
         //game logic..
         let lineup;
-        if (halChoice === 'Bear') {
-          if (userChoice === 'Bear') {
+        if (halChoice === 'bear') {
+          if (userChoice === 'bear') {
             lineup = 1;
           }
-          else if (userChoice === 'Ninja') {
+          else if (userChoice === 'ninja') {
             lineup = 9;
-          } else { //hunter
+          } else { //user picked hunter
             lineup = 6;
           }
         }
-        if (halChoice === 'Hunter') {
-           if (userChoice === 'Bear') {
+        else if (halChoice === 'hunter') {
+           if (userChoice === 'bear') {
             lineup = 8;
           }
-          else if (userChoice === 'Ninja') {
+          else if (userChoice === 'ninja') {
             lineup = 5;
-          } else { //hunter
+          } else { //user picked hunter
             lineup = 3;
           }
         }
-        if (halChoice === 'Ninja') {
-           if (userChoice === 'Bear') {
+        else if (halChoice === 'ninja') {
+           if (userChoice === 'bear') {
             lineup = 4;
           }
-          else if (userChoice === 'Ninja') {
+          else if (userChoice === 'ninja') {
             lineup = 2;
-          } else { //hunter
+          } else { //user picked hunter
             lineup = 7;
           }
-        }
+        } else {}
         
         //partitioned switch
         let outcome = '';

@@ -14,6 +14,7 @@
      <!--Here is where our html console lives-->
     <p id="output"></p>
     <p id="output2"></p>
+    <p id="output3"></p>
 
     <!--Introduction-->
     <script>
@@ -22,15 +23,16 @@
         let greeting = "Hi " + nameTag +  " Let\'s Play!";
         alert(`${greeting}`);
         //say hello to user
+        const halStrat = ['bear', 'ninja', 'hunter'];
+        let halChoice = 0; //default bear
+        let userChoice = '';
+        let donePlaying = false;
+        let winTotal = 0;
+        let loseTotal = 0;
+        let tieTotal = 0;
     </script>
     <!-- TODO 
-    Add Play Again? loop after introduction
-    Add Countdown after user choice
-    Display personalized overall result and goodbye to html and console
-    play again? prompt should appear at same time as html write (html write may not be visible until player answers No as prompt windows block 
-    page for security, this is fine as long as over wins/losses are logged to html at the end and play history is clear)
     Handle invalid inputs such as empty response, any string that isn't Bear, Ninja, or Hunter, clicking Cancel, etc
-    Use both template literals and concatenation in your outputs to show understanding
     Don't use user defined functions
     Comment code
     Unique variable names
@@ -39,14 +41,15 @@
     -->
     <!--Game-->
     <script>
-        function getRandomInt(max) 
-        {
-          return Math.floor(Math.random() * max);
-        }//initialize math.random seed
-        const halStrat = ['bear', 'ninja', 'hunter'];
-        let halChoice = halStrat[getRandomInt(3)]; // choose one of 3 from array at random
+        
+        //begin loop
+       do {
+        halChoice = halStrat[Math.floor(Math.random() * 3)]; // choose one of 3 from array at random. Possible values: 0,1,2
         //user picks one of three roles
-        let userChoice = prompt('Who are you: Bear, Ninja, or Hunter?').toLowerCase();
+        userChoice = prompt('Who are you: Bear, Ninja, or Hunter?').toLowerCase();
+
+        //3 second countdown
+      
         //write lineup to html console
         document.getElementById('output').innerHTML = `${nameTag} you picked ${userChoice}! <br><br> The computer picked ${halChoice}!`;
         //write lineup to javascript console
@@ -111,18 +114,25 @@
         if (outcome === 'win') {
           document.getElementById('output2').innerHTML = "You Win!!";
           console.log("You Win!!");
+          winTotal++;
         }
         //lose
         else if (outcome === 'lose') {
           document.getElementById('output2').innerHTML = "You Lose!!";
           console.log("You Lose!!");
+          loseTotal++;
         }
         //tie
         else {
           document.getElementById('output2').innerHTML = "It\'s a tie.";
           console.log("It\'s a tie.");
+          tieTotal++;
         }
-       
+        //ask if done playing
+        //end loop
+       } while (!donePlaying)
+        //print overall game stats and write personalized goodbye
+        document.getElementById('output3').innerHTML = `You won ${winTotal} times, lost ${loseTotal} times, and tied ${tieTotal} times. Congratulations, ${nameTag}!`;
       
     </script>
  </body>

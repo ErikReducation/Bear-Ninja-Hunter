@@ -29,6 +29,7 @@
         let tieTotal = 0;
         let currentDate = null;
         let nameIsValid = false;
+	let choiceIsValid = false;
         let nameTag = '';
         
         //ask user for name 
@@ -62,9 +63,14 @@
        do {
         halChoice = halStrat[Math.floor(Math.random() * 3)]; // choose one of 3 from array at random. Possible values: 0,1,2
         //user picks one of three roles
+	do {       
         userChoice = prompt('Who are you: Bear, Ninja, or Hunter?').toLowerCase();
-
-        //3 second countdown
+	if (userChoice === 'bear' || userChoice === 'ninja' || userChoice === 'hunter'){
+	  choiceIsValid = true;
+	} else //input is invalid
+	  choiceIsValid = false;
+	  alert("Invalid input. Input must be Bear, Ninja, or Hunter, case insensitive.");
+	} while (!choiceIsValid)
 
         //3-2-1-countdown to console and pid 
 	
@@ -94,6 +100,9 @@
 	      do {
 		      currentDate = Date.now();
 	      } while (currentDate - date < 1000);// very dangerous. Can cause crashes
+
+	console.log(0);
+	document.getElementByID('output').innerHTML += '0 \n';
          
       
         //write lineup to html console
@@ -175,6 +184,12 @@
           tieTotal++;
         }
         //ask if done playing
+	doneInput = prompt(`${nameTag}, would you like to play again, Yes or No?`).toLowerCase();
+	  if (doneInput === 'yes' || doneInput === 'y'){//charitable
+	    donePlaying = true;
+	  } else {
+            donePlaying = false; //if they can't bother reading the question properly they don't get to play again, simple as that! no need to sanitize this input
+	  }
         //end loop
        } while (!donePlaying)
         //print overall game stats and write personalized goodbye

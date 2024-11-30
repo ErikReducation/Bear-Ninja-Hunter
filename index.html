@@ -169,28 +169,28 @@
         //write win/lose to html and console
         //win
         if (outcome === 'win') {
-          document.getElementById('output2').innerHTML += "You Win!!";
+          document.getElementById('output2').innerHTML = "You Win!!";
           console.log("You Win!!");
           winTotal++;
         }
         //lose
         else if (outcome === 'lose') {
-          document.getElementById('output2').innerHTML += "You Lose!!";
+          document.getElementById('output2').innerHTML = "You Lose!!";
           console.log("You Lose!!");
           loseTotal++;
         }
         //tie
         else {
-          document.getElementById('output2').innerHTML += "It\'s a tie.";
+          document.getElementById('output2').innerHTML = "It\'s a tie.";
           console.log("It\'s a tie.");
           tieTotal++;
         }
         //ask if done playing
 	doneInput = prompt(`${nameTag}, would you like to play again, Yes or No?`).toLowerCase();
 	  if (doneInput === 'yes' || doneInput === 'y'){//charitable
-	    donePlaying = true;
+	    donePlaying = false;
 	  } else {
-            donePlaying = false; //if they can't bother reading the question properly they don't get to play again, simple as that! no need to sanitize this input
+            donePlaying = true; //if they can't bother reading the question properly they don't get to play again, simple as that! no need to sanitize this input
 	  }
         //end loop
        } while (!donePlaying)

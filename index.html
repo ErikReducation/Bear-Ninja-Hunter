@@ -66,10 +66,15 @@
         //user picks one of three roles
 	do {       
         userChoice = prompt('Who are you: Bear, Ninja, or Hunter?').toLowerCase();
-	if (userChoice === 'bear' || userChoice === 'ninja' || userChoice === 'hunter'){
-	  choiceIsValid = true;
-	} else //input is invalid
-	{
+	if (nameTag != null) {
+	  if (userChoice === 'bear' || userChoice === 'ninja' || userChoice === 'hunter'){
+	    choiceIsValid = true;
+	  } else //input is invalid
+	  {
+	    choiceIsValid = false;
+	    alert("Invalid input. Input must be Bear, Ninja, or Hunter, case insensitive.");
+	  }
+	} else {//null or clicked cancel
 	  choiceIsValid = false;
 	  alert("Invalid input. Input must be Bear, Ninja, or Hunter, case insensitive.");
 	}

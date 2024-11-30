@@ -19,18 +19,18 @@
     <script type = "text/javascript">
         
        
-        const halStrat = ['bear', 'ninja', 'hunter'];
+        const halStrat = ['bear', 'ninja', 'hunter'];//computer options
         let halChoice = 0; //default bear
         let userChoice = '';
         let donePlaying = false;
         let winTotal = 0;
         let loseTotal = 0;
         let tieTotal = 0;
-        let currentDate = null;
-        let nameIsValid = false;
+        let currentDate = null;//for countdown
+        let nameIsValid = false;//sanitation variables
 	let choiceIsValid = false;
         let nameTag = '';
-        document.getElementById('output').innerHTML = " ";//initialize docgetelembyid so += appending works for whole gameplay loop
+        document.getElementById('output').innerHTML = " ";//initialize docGetElemById so += appending works for whole gameplay loop
 	
 	
         //ask user for name 
@@ -62,20 +62,20 @@
         
         //begin loop
        do {
-        halChoice = halStrat[Math.floor(Math.random() * 3)]; // choose one of 3 from array at random. Possible values: 0,1,2
+        halChoice = halStrat[Math.floor(Math.random() * 3)]; // computer rolls one of 3 from array at random. Possible values: 0,1,2 => bear, ninja, hunter
         //user picks one of three roles
 	do {       
         userChoice = prompt('Who are you: Bear, Ninja, or Hunter?');
 	if (userChoice != null) {
-	  userChoice = userChoice.toLowerCase();
+	  userChoice = userChoice.toLowerCase();//cant use tolowercase on null string, gotta check first
 	  if (userChoice === 'bear' || userChoice === 'ninja' || userChoice === 'hunter'){
 	    choiceIsValid = true;
-	  } else //input is invalid
+	  } else //bad input
 	  {
 	    choiceIsValid = false;
 	    alert("Invalid input. Input must be Bear, Ninja, or Hunter, case insensitive.");
 	  }
-	} else {//null or clicked cancel
+	} else {// clicked cancel
 	  choiceIsValid = false;
 	  alert("Invalid input. Input must be Bear, Ninja, or Hunter, case insensitive.");
 	}
@@ -178,7 +178,7 @@
         if (outcome === 'win') {
           document.getElementById('output').innerHTML += "You Win!!<br>";
           console.log("You Win!!");
-          winTotal++;
+          winTotal++;//increment for overall stats
         }
         //lose
         else if (outcome === 'lose') {
@@ -195,12 +195,17 @@
         //ask if done playing
 	//html isn't visible even during waiting sections due to Javascript Hoisting perhaps? Adding a loop based on the system clock to wait doesn't seem to stop this. 
 	//Unsure.
-	doneInput = prompt(`${nameTag}, would you like to play again, Yes or No?`).toLowerCase();
-	  if (doneInput === 'yes' || doneInput === 'y'){//charitable
+	
+	doneInput = prompt(`${nameTag}, would you like to play again, Yes or No?`);
+	if (doneInput != null) {//didn't click cancel
+	  if (doneInput.toLowerCase() === 'yes' || doneInput.toLowerCase() === 'y'){//charitable
 	    donePlaying = false;
 	  } else {
             donePlaying = true; //if they can't bother reading the question properly they don't get to play again, simple as that! no need to sanitize this input
 	  }
+	} else {//clicked cancel, they clearly want out
+	  donePlaying = true;
+	}
         //end loop
        } while (!donePlaying)
         //print overall game stats and write personalized goodbye

@@ -68,8 +68,10 @@
 	if (userChoice === 'bear' || userChoice === 'ninja' || userChoice === 'hunter'){
 	  choiceIsValid = true;
 	} else //input is invalid
+	{
 	  choiceIsValid = false;
 	  alert("Invalid input. Input must be Bear, Ninja, or Hunter, case insensitive.");
+	}
 	} while (!choiceIsValid)
 
         //3-2-1-countdown to console and pid 
@@ -102,7 +104,7 @@
 	      } while (currentDate - date < 1000);// very dangerous. Can cause crashes
 
 	console.log(0);
-	document.getElementByID('output').innerHTML += '0 \n';
+	document.getElementById('output').innerHTML += '0 \n';
          
       
         //write lineup to html console

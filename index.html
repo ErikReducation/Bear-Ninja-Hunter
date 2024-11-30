@@ -65,8 +65,9 @@
         halChoice = halStrat[Math.floor(Math.random() * 3)]; // choose one of 3 from array at random. Possible values: 0,1,2
         //user picks one of three roles
 	do {       
-        userChoice = prompt('Who are you: Bear, Ninja, or Hunter?').toLowerCase();
+        userChoice = prompt('Who are you: Bear, Ninja, or Hunter?');
 	if (userChoice != null) {
+	  userChoice = userChoice.toLowerCase();
 	  if (userChoice === 'bear' || userChoice === 'ninja' || userChoice === 'hunter'){
 	    choiceIsValid = true;
 	  } else //input is invalid

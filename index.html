@@ -13,8 +13,7 @@
 
      <!--Here is where our html console lives-->
     <p id="output"></p>
-    <p id="output2"></p>
-    <p id="output3"></p>
+   
 
     <!--Introduction-->
     <script>
@@ -31,7 +30,9 @@
         let nameIsValid = false;
 	let choiceIsValid = false;
         let nameTag = '';
-        
+        document.getElementById('output').innerHTML = "<br>";//initialize docgetelembyid so += appending works for whole gameplay loop
+	
+	
         //ask user for name 
         //say hello to user
         
@@ -77,7 +78,7 @@
         //3-2-1-countdown to console and pid 
 	
       	console.log(3); 
-        document.getElementById('output').innerHTML = '3 \n';//reset html output
+        document.getElementById('output').innerHTML += '3 <br>';
 	      //wait 1 second
 	      date = Date.now();//code lifted from https://www.sitepoint.com/delay-sleep-pause-wait/
 	      currentdate = null;
@@ -86,7 +87,7 @@
 	      } while (currentDate - date < 1000);// very dangerous. Can cause crashes
 	      
         console.log(2); 
-        document.getElementById('output').innerHTML += '2 \n';//append 2
+        document.getElementById('output').innerHTML += '2 <br>';//append 2
 	      //wait
 	      date = Date.now();//code lifted from https://www.sitepoint.com/delay-sleep-pause-wait/
 	      currentdate = null;
@@ -95,7 +96,7 @@
 	      } while (currentDate - date < 1000);// very dangerous. Can cause crashes
      
      	  console.log(1); 
-    	  document.getElementById('output').innerHTML += '1 \n';//append 1
+    	  document.getElementById('output').innerHTML += '1 <br>';//append 1
 	      //wait
 	      date = Date.now();//code lifted from https://www.sitepoint.com/delay-sleep-pause-wait/
 	      currentdate = null;
@@ -104,11 +105,11 @@
 	      } while (currentDate - date < 1000);// very dangerous. Can cause crashes
 
 	console.log(0);
-	document.getElementById('output').innerHTML += '0 \n';
+	document.getElementById('output').innerHTML += '0 <br>';
          
       
         //write lineup to html console
-        document.getElementById('output').innerHTML += `${nameTag} you picked ${userChoice}! <br><br> The computer picked ${halChoice}!`;
+        document.getElementById('output').innerHTML += `${nameTag} you picked ${userChoice}!<br> The computer picked ${halChoice}!<br>`;
         //write lineup to javascript console
         console.log(`${nameTag} you picked ${userChoice}! \n The computer picked ${halChoice}!`);
        
@@ -169,23 +170,25 @@
         //write win/lose to html and console
         //win
         if (outcome === 'win') {
-          document.getElementById('output2').innerHTML = "You Win!!";
+          document.getElementById('output').innerHTML += "You Win!!<br>";
           console.log("You Win!!");
           winTotal++;
         }
         //lose
         else if (outcome === 'lose') {
-          document.getElementById('output2').innerHTML = "You Lose!!";
+          document.getElementById('output').innerHTML += "You Lose!!<br>";
           console.log("You Lose!!");
           loseTotal++;
         }
         //tie
         else {
-          document.getElementById('output2').innerHTML = "It\'s a tie.";
+          document.getElementById('output').innerHTML += "It\'s a tie.<br>";
           console.log("It\'s a tie.");
           tieTotal++;
         }
         //ask if done playing
+	//html isn't visible even during waiting sections due to Javascript Hoisting perhaps? Adding a loop based on the system clock to wait doesn't seem to stop this. 
+	//Unsure.
 	doneInput = prompt(`${nameTag}, would you like to play again, Yes or No?`).toLowerCase();
 	  if (doneInput === 'yes' || doneInput === 'y'){//charitable
 	    donePlaying = false;
@@ -195,7 +198,7 @@
         //end loop
        } while (!donePlaying)
         //print overall game stats and write personalized goodbye
-        document.getElementById('output3').innerHTML = `You won ${winTotal} times, lost ${loseTotal} times, and tied ${tieTotal} times. Congratulations, ${nameTag}!`;
+        document.getElementById('output').innerHTML += `You won ${winTotal} time(s), lost ${loseTotal} time(s), and tied ${tieTotal} time(s). Congratulations, ${nameTag}!<br>`;
       
     </script>
  </body>
